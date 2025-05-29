@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ProjectPraktikum.Bab4;
+package ProjectPraktikum.Bab9;
 
 /**
  *
@@ -19,4 +19,5 @@ public class KeaktifanMahasiswa extends Penilaian{
     public double nilaiKeaktifan() {
         return ((nilai_keaktifan * 0.1) + nilaiAkhir());
     }
+    
 }
