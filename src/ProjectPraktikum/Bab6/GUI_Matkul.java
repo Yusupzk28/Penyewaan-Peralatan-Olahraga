@@ -33,12 +33,7 @@ public class GUI_Matkul extends javax.swing.JFrame {
     txtMataKuliah.setText(dm.nama_mk);
 }
 
-public void clear() {
-    txtKodeMataKuliah.setText("");
-    txtMataKuliah.setText("");
-    txtDosenPengajar.setText("");
-    txtJumlahSks.setText("");
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +60,7 @@ public void clear() {
         btnUbah = new javax.swing.JButton();
         btnNilai = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,7 +101,12 @@ public void clear() {
             }
         });
 
-        btnUbah.setText("ubah");
+        btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
 
         btnNilai.setText("Form Nilai");
 
@@ -115,6 +116,9 @@ public void clear() {
                 btnSimpanActionPerformed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel5.setText("DATA MATAKULIAH");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,13 +155,18 @@ public void clear() {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnHapus)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBatal)))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                                .addComponent(btnBatal))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel5)))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -197,12 +206,15 @@ public void clear() {
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-                clear();
+        txtKodeMataKuliah.setText("");
+        txtMataKuliah.setText("");
+        txtDosenPengajar.setText("");
+        txtJumlahSks.setText("");
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:M
-                JOptionPane.showMessageDialog(null, "Data anda Ditambahkan ke tabel");
+        JOptionPane.showMessageDialog(null, "Data anda Ditambahkan ke tabel");
         DefaultTableModel dataModel = (DefaultTableModel) tabel_data.getModel();
         List list = new ArrayList<>();
         tabel_data.setAutoCreateColumnsFromModel(true);
@@ -212,12 +224,15 @@ public void clear() {
         list.add(mk.dosen_pengampu);
         list.add(mk.jml_sks);
         dataModel.addRow(list.toArray());
-        clear();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUbahActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,6 +280,7 @@ public void clear() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabel_data;
     private javax.swing.JTextField txtCari;

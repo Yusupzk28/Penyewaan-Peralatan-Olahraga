@@ -9,16 +9,31 @@ package ProjectPraktikum.Bab9;
  *
  * @author ACER
  */
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 public class GUI_Nilai extends javax.swing.JFrame {
 
     /**
      * Creates new form GUI_Nilai
      */
+    String[][] data = new String[0][9];
+    String[] columnNames = {"NIM", "Kode MK", "NP 1", "NP 2", "UTS", "NP 3", "PRAK", "UAS", "Akhir"};
     public GUI_Nilai() {
-            initComponents();
+        initComponents();
         KeaktifanMahasiswa nilai = new KeaktifanMahasiswa();
         txtKeaktifan.setText(Integer.toString(nilai.nilai_keaktifan));
         txtKeaktifan.setEnabled(false);
+        cmbNim.removeAllItems();
+        cmbNim.addItem("-- Pilih NIM --");
+        cmbNim.addItem("2318001");
+        cmbNim.addItem("2318199");
+        cmbNim.addItem("2318038");
+
+        cmbKodeMk.removeAllItems();
+        cmbKodeMk.addItem("-- Pilih Kode MK --");
+        cmbKodeMk.addItem("IF101");
+        cmbKodeMk.addItem("IF102");
+        cmbKodeMk.addItem("IF103");
     }
     public void batal(){
             txtNP1.setText("");
@@ -137,19 +152,16 @@ public class GUI_Nilai extends javax.swing.JFrame {
 
         jLabel12.setText("Nillai Akhir");
 
-        btnSimpan.setText("jButton1");
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         tbData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "NIM", "Kode MK", "NP 1", "NP 2", "UTS", "NP 3", "PRAK", "UAS", "Akhir"
@@ -157,11 +169,21 @@ public class GUI_Nilai extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbData);
 
-        btnUbah.setText("jButton2");
+        btnUbah.setText("Update");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
 
-        btnHapus.setText("jButton3");
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
-        btnBatal.setText("jButton4");
+        btnBatal.setText("Batal");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalActionPerformed(evt);
@@ -174,9 +196,9 @@ public class GUI_Nilai extends javax.swing.JFrame {
 
         cmbKodeMk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnNim.setText("jButton1");
+        btnNim.setText("NIM");
 
-        btnKdMk.setText("jButton2");
+        btnKdMk.setText("KD MK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -345,7 +367,7 @@ public class GUI_Nilai extends javax.swing.JFrame {
 
     private void cmKeaktifanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmKeaktifanActionPerformed
         // TODO add your handling code here:
-        if (checkBox.isSelected()){
+        if (cmKeaktifan.isSelected()){
             txtKeaktifan.setEnabled(true);
         }else{
             txtKeaktifan.setEnabled(false);
@@ -354,55 +376,71 @@ public class GUI_Nilai extends javax.swing.JFrame {
 
     private void btnProsesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProsesActionPerformed
         // TODO add your handling code here:
-        memoNilai.setText("");
-        KeaktifanMahasiswa nilai = new KeaktifanMahasiswa();
-        nilai.NIM = txtNIM.getText();
-        nilai.nama = txtNama.getText();
-        nilai.kode_mk = txtKodeMK.getText();
-        nilai.setNP1(Integer.parseInt(txtNP1.getText()));
-        nilai.setNP2(Integer.parseInt(txtNP2.getText()));
-        nilai.setNP3(Integer.parseInt(txtNP3.getText()));
-        nilai.setNilaiPrak(Integer.parseInt(txtPraktikum.getText()));
-        nilai.setUTS(Integer.parseInt(txtUts.getText()));
-        nilai.setUAS(Integer.parseInt(txtUas.getText()));
-        
-        nilai.nilai_keaktifan = Integer.parseInt(txtKeaktifan.getText());
-        if (checkBox.isSelected()){
-            memoNilai.append("Nilai Akhir Mata Kuliah \n");
-            memoNilai.append("--------------------------------------------- \n");
-            memoNilai.append("NIM            : "+nilai.NIM+"\n");
-            memoNilai.append("Nama           : "+nilai.nama+"\n");
-            memoNilai.append("Kode MK        : "+nilai.kode_mk+"\n");
-            memoNilai.append("Nilai NP1              : "+nilai.getNP1()+"\n");
-            memoNilai.append("Nilai NP2              : "+nilai.getNP2()+"\n");
-            memoNilai.append("Nilai NP3              : "+nilai.getNP3()+"\n");
-            memoNilai.append("Nilai Praktikum        : "+nilai.getNilaiPrak()+"\n");
-            memoNilai.append("Nilai UTS              : "+nilai.getUTS()+"\n");
-            memoNilai.append("Nilai UAS              : "+nilai.getUAS()+"\n");
-            memoNilai.append("--------------------------------------------- \n");
-            memoNilai.append("Nilai Akhir            : "+nilai.nilaiKeaktifan()+"\n");
-        }
-        else{
-            memoNilai.append("Nilai Akhir Mata Kuliah \n");
-            memoNilai.append("--------------------------------------------- \n");
-            memoNilai.append("NIM            : "+nilai.NIM+"\n");
-            memoNilai.append("Nama           : "+nilai.nama+"\n");
-            memoNilai.append("Kode MK        : "+nilai.kode_mk+"\n");
-            memoNilai.append("Nilai NP1              : "+nilai.getNP1()+"\n");
-            memoNilai.append("Nilai NP2              : "+nilai.getNP2()+"\n");
-            memoNilai.append("Nilai NP3              : "+nilai.getNP3()+"\n");
-            memoNilai.append("Nilai Praktikum        : "+nilai.getNilaiPrak()+"\n");
-            memoNilai.append("Nilai UTS              : "+nilai.getUTS()+"\n");
-            memoNilai.append("Nilai UAS              : "+nilai.getUAS()+"\n");
-            memoNilai.append("--------------------------------------------- \n");
-            memoNilai.append("Nilai Akhir            : "+nilai.nilaiKeaktifan()+"\n");
-        }
+    try {
+        double np1 = Double.parseDouble(txtNP1.getText());
+        double np2 = Double.parseDouble(txtNP2.getText());
+        double np3 = Double.parseDouble(txtNP3.getText());
+        double uts = Double.parseDouble(txtUts.getText());
+        double praktik = Double.parseDouble(txtPraktikum.getText());
+        double uas = Double.parseDouble(txtUas.getText());
+        double keaktifan = cmKeaktifan.isSelected() ? Double.parseDouble(txtKeaktifan.getText()) : 0;
+
+        double na = (np1 + np2 + np3) / 3 * 0.2 + uts * 0.2 + praktik * 0.2 + uas * 0.3 + keaktifan * 0.1;
+        txtNA.setText(String.format("%.2f", na));
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Pastikan semua nilai diisi dengan benar (angka).");
+    }
     }//GEN-LAST:event_btnProsesActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
         batal();
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        String nim = (String) cmbNim.getSelectedItem();
+        String kodeMk = (String) cmbKodeMk.getSelectedItem();
+        String NP1 = txtNP1.getText();
+        String NP2 = txtNP2.getText();
+        String NP3 = txtNP3.getText();
+        String UTS = txtUts.getText();
+        String PRAK = txtPraktikum.getText();
+        String UAS = txtUas.getText();
+        String Akhir = txtNA.getText();
+
+        String[][] newData = new String[data.length + 1][9];
+
+        for (int i = 0; i < data.length; i++) {
+            newData[i] = data[i];
+        }
+
+        newData[data.length] = new String[] {nim, kodeMk, NP1, NP2, NP3, UTS, PRAK, UAS, Akhir};
+
+        data = newData;
+
+        tbData.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        int row = tbData.getSelectedRow();
+        if (row != -1) { 
+        String[][] newData = new String[data.length - 1][4];
+
+        for (int i = 0, j = 0; i < data.length; i++) { 
+            if (i != row) {
+                newData[j++] = data[i];
+            }
+        }
+        data = newData; 
+        tbData.setModel(new javax.swing.table.DefaultTableModel(data, columnNames)); 
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUbahActionPerformed
 
     /**
      * @param args the command line arguments

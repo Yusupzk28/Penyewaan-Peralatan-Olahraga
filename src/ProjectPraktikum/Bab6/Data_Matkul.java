@@ -14,16 +14,10 @@ public class Data_Matkul {
     String nama_mk;
     String dosen_pengampu;
     int jml_sks;
-
-    // Konstruktor
     public Data_Matkul() {
-        this.kode_mk = "d";
-        this.nama_mk = "saa";
-        this.dosen_pengampu = "tt";
-        this.jml_sks = 00;
+        this.kode_mk = "IF2301";
+        this.nama_mk = "Animasi";
+        this.dosen_pengampu = "Dr Agung Panji Sasmito";
+        this.jml_sks = 04;
     }
-
-    //Data_Matkul() {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    //}
 }
